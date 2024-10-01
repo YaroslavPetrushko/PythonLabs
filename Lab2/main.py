@@ -2,18 +2,6 @@
 import math
 from mod import product
 
-def expression (x):
-
-    z=(1-2*pow(math.sin(x),2))/(1+pow(math.sin(x),2))
-
-    return z
-
-print("Task 1. Expression.")
-
-x=int(input('Enter x: '))
-
-print("Result. z = ", expression(x))
-
 print("Task 2. Product of even numbers.")
 
 x=int(input('Enter x: '))
