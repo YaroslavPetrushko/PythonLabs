@@ -1,17 +1,14 @@
 def unique_letters():
-    # Введення слова від користувача
     word = input("Enter a word: ")
     
-    seen = set()  # Множина для збереження унікальних літер
-    result = []   # Список для збереження перших входжень літер
+    seen = set()
+    result = []  
 
-    # Проходимо по кожному символу у слові
     for char in word:
-        if char not in seen:  # Якщо символ ще не був зустрінутий
-            seen.add(char)    # Додаємо його в множину
-            result.append(char)  # Додаємо його в результат
+        if char not in seen: 
+            seen.add(char)    
+            result.append(char) 
 
-    # Виводимо результат у вигляді рядка
     print(''.join(result))
     return
 
