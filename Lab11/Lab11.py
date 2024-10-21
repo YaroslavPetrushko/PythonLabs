@@ -1,26 +1,26 @@
 
 import csv
 
-# Функція для читання даних з CSV файлу та обробки рядків
+# Р¤СѓРЅРєС†С–СЏ РґР»СЏ С‡РёС‚Р°РЅРЅСЏ РґР°РЅРёС… Р· CSV С„Р°Р№Р»Сѓ С‚Р° РѕР±СЂРѕР±РєРё СЂСЏРґРєС–РІ
 def read_gdp_life_expectancy(filename):
     data = {'Ukraine': {}, 'United States': {}}
     try:
         with open(filename, mode='r', newline='', encoding='utf-8') as file:
-            reader = csv.reader(file, delimiter=',')  # Використовуємо стандартний розділювач коми
+            reader = csv.reader(file, delimiter=',')  # Р’РёРєРѕСЂРёСЃС‚РѕРІСѓС”РјРѕ СЃС‚Р°РЅРґР°СЂС‚РЅРёР№ СЂРѕР·РґС–Р»СЋРІР°С‡ РєРѕРјРё
             for row in reader:
-                # Розбиваємо кожен рядок на частини
+                # Р РѕР·Р±РёРІР°С”РјРѕ РєРѕР¶РµРЅ СЂСЏРґРѕРє РЅР° С‡Р°СЃС‚РёРЅРё
                 if len(row) < 14:
-                    continue  # Пропускаємо рядки з недостатньою кількістю елементів
+                    continue  # РџСЂРѕРїСѓСЃРєР°С”РјРѕ СЂСЏРґРєРё Р· РЅРµРґРѕСЃС‚Р°С‚РЅСЊРѕСЋ РєС–Р»СЊРєС–СЃС‚СЋ РµР»РµРјРµРЅС‚С–РІ
 
                 country = row[0].strip()
-                indicator = row[2].strip()  # Назва показника
-                values = row[4:]  # Значення показника починаються з 5-го елемента
+                indicator = row[2].strip()  # РќР°Р·РІР° РїРѕРєР°Р·РЅРёРєР°
+                values = row[4:]  # Р—РЅР°С‡РµРЅРЅСЏ РїРѕРєР°Р·РЅРёРєР° РїРѕС‡РёРЅР°СЋС‚СЊСЃСЏ Р· 5-РіРѕ РµР»РµРјРµРЅС‚Р°
 
-                # Перевіряємо, чи це країна та показник, які нас цікавлять
+                # РџРµСЂРµРІС–СЂСЏС”РјРѕ, С‡Рё С†Рµ РєСЂР°С—РЅР° С‚Р° РїРѕРєР°Р·РЅРёРє, СЏРєС– РЅР°СЃ С†С–РєР°РІР»СЏС‚СЊ
                 if country in ['Ukraine', 'United States'] and indicator == "Life expectancy at birth, total (years)":
-                    # Додаємо дані до словника для 2010-2019 років
+                    # Р”РѕРґР°С”РјРѕ РґР°РЅС– РґРѕ СЃР»РѕРІРЅРёРєР° РґР»СЏ 2010-2019 СЂРѕРєС–РІ
                     for i, year in enumerate(range(2010, 2020)):
-                        if i < len(values):  # Перевіряємо чи є значення для кожного року
+                        if i < len(values):  # РџРµСЂРµРІС–СЂСЏС”РјРѕ С‡Рё С” Р·РЅР°С‡РµРЅРЅСЏ РґР»СЏ РєРѕР¶РЅРѕРіРѕ СЂРѕРєСѓ
                             data[country][year] = values[i].strip() if values[i] else None
     except FileNotFoundError:
         print(f"Error: The file {filename} does not exist.")
@@ -28,20 +28,20 @@ def read_gdp_life_expectancy(filename):
         print(f"An error occurred: {e}")
     return data
 
-# Функція для запису результатів у новий CSV файл
+# Р¤СѓРЅРєС†С–СЏ РґР»СЏ Р·Р°РїРёСЃСѓ СЂРµР·СѓР»СЊС‚Р°С‚С–РІ Сѓ РЅРѕРІРёР№ CSV С„Р°Р№Р»
 def write_comparison_to_csv(data, output_filename):
     try:
         with open(output_filename, mode='w', newline='', encoding='utf-8') as file:
             writer = csv.writer(file)
-            # Записуємо заголовок
+            # Р—Р°РїРёСЃСѓС”РјРѕ Р·Р°РіРѕР»РѕРІРѕРє
             writer.writerow(['Years', 'Ukraine', 'USA', 'Life expectancy at birth, total (years)'])
 
-            # Записуємо дані по роках
+            # Р—Р°РїРёСЃСѓС”РјРѕ РґР°РЅС– РїРѕ СЂРѕРєР°С…
             for year in range(2010, 2020):
                 ukraine_value = data['Ukraine'].get(year, 'N/A')
                 usa_value = data['United States'].get(year, 'N/A')
                 
-                # Визначаємо країну з меншою тривалістю життя
+                # Р’РёР·РЅР°С‡Р°С”РјРѕ РєСЂР°С—РЅСѓ Р· РјРµРЅС€РѕСЋ С‚СЂРёРІР°Р»С–СЃС‚СЋ Р¶РёС‚С‚СЏ
                 if ukraine_value != 'N/A' and usa_value != 'N/A':
                     comparison = 'US have better value' if float(ukraine_value) < float(usa_value) else 'Ukraine have better value'
                 else:
@@ -52,18 +52,18 @@ def write_comparison_to_csv(data, output_filename):
         print(f"An error occurred while writing to the file: {e}")
 
 
-input_filename = 'Data.csv'  # Ваш завантажений файл
+input_filename = 'Data.csv'  # Р’Р°С€ Р·Р°РІР°РЅС‚Р°Р¶РµРЅРёР№ С„Р°Р№Р»
 output_filename = 'Comparison_results.csv'
     
-# Читаємо дані з файлу
+# Р§РёС‚Р°С”РјРѕ РґР°РЅС– Р· С„Р°Р№Р»Сѓ
 data = read_gdp_life_expectancy(input_filename)
     
-# Виводимо дані на екран
+# Р’РёРІРѕРґРёРјРѕ РґР°РЅС– РЅР° РµРєСЂР°РЅ
 print("Data for Ukraine and United States (2010-2019):")
 for country, values in data.items():
      for year, life_expectancy in values.items():
          print(f"{country} ({year}): {life_expectancy}")
 
-# Запис результатів у новий CSV файл
+# Р—Р°РїРёСЃ СЂРµР·СѓР»СЊС‚Р°С‚С–РІ Сѓ РЅРѕРІРёР№ CSV С„Р°Р№Р»
 write_comparison_to_csv(data, output_filename)
 print(f"Comparison results saved to {output_filename}.")
