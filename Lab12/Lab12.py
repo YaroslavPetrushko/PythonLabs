@@ -1,6 +1,6 @@
 import json
 
-# Ініціалізація даних про автомобілі
+# пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 cars = [
     {"Model": "BMW", "Price": 10000, "Age": 4},
     {"Model": "Audi", "Price": 8000, "Age": 7},
@@ -14,13 +14,13 @@ cars = [
     {"Model": "Kia", "Price": 10500, "Age": 5}
 ]
 
-# Зберігаємо початкові дані у JSON файл
+# пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ JSON пїЅпїЅпїЅпїЅ
 jsonData = json.dumps(cars)
 with open("data.json", "wt") as file:
     file.write(jsonData)
 file.close
 
-# Функція для виведення всіх записів на екран
+# пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 def view_cars():
     try:
         with open("data.json", "r", encoding="utf-8") as file:
@@ -32,28 +32,28 @@ def view_cars():
     except Exception as e:
         print("An error occurred:", e)
 
-# Функція для додавання нового запису
+# пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 def add_car():
     try:
             model = input("Model: ")
             price = int(input("Price: "))
             age = int(input("Age: "))
         
-            # Перевірка на правильність введення
+            # пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             if price <= 0 or age < 0:
                 raise ValueError("Price must be positive and Age cannot be negative.")
         
-            # Створюємо новий запис
+            # пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
             new_car = {"Model": model, "Price": price, "Age": age}
         
-            # Зчитуємо поточні дані та додаємо новий запис
+            # пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
             with open("data.json", "r", encoding="utf-8") as file:
                 cars = json.load(file)
 
-            # Додаємо новий автомобіль
+            # пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             cars.append(new_car)
         
-            # Зберігаємо оновлені дані у файл
+            # пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ
             with open("data.json", "w", encoding="utf-8") as file:
                 json.dump(cars, file, indent=4)
         
@@ -66,7 +66,7 @@ def add_car():
     except Exception as e:
             print("An error occurred:", e)
 
-# Функція для пошуку автомобілів за віком
+# пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ
 def search_cars_by_model():
     try:
         model_name = input("Enter the model of the car to search for: ")
@@ -84,7 +84,7 @@ def search_cars_by_model():
     except Exception as e:
         print("An error occurred:", e)
 
-# Функція для розрахунку середньої ціни автомобілів старше 6 років
+# пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ 6 пїЅпїЅпїЅпїЅ
 def calculate_average_price():
     with open("data.json", "r", encoding="utf-8") as file:
         cars = json.load(file)
@@ -94,8 +94,8 @@ def calculate_average_price():
             avg_price = sum(car["Price"] for car in older_cars) / len(older_cars)
             print(f"Average price of cars older than 6 years: {avg_price:.2f}")
             
-            # Збереження результату у новий JSON файл
-            result = [{"Average Price": avg_price}]
+            # пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ JSON пїЅпїЅпїЅпїЅ
+            result = {"Average Price": avg_price}
             with open("average_price.json", "w", encoding="utf-8") as avg_file:
                 json.dump(result, avg_file, indent=4)
             print("Result saved to average_price.json")
@@ -103,7 +103,7 @@ def calculate_average_price():
             print("No cars older than 6 years.")
 
 
-# Головне меню
+# пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
 while True:
     print("\nMenu:")
     print("1 - View all cars")
