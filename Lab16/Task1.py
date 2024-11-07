@@ -3,7 +3,6 @@ import string
 import numpy as np
 import matplotlib.pyplot as plt
 from collections import Counter
-
 from nltk.corpus import stopwords
 
 # Завантажуємо текст
@@ -50,7 +49,8 @@ most_used_words(text, "10 найбільш вживаних слів (до оч�
 def remove_stopwords_punctuation(text):
     words = nltk.word_tokenize(text)
     stop_words = set(stopwords.words('english'))
-    words_cleaned = [word for word in words if word.lower() not in stop_words and word not in string.punctuation]
+    # Видаляємо стоп-слова і пунктуацію
+    words_cleaned = [word for word in words if word.lower() not in stop_words and word.isalnum()]
     return ' '.join(words_cleaned)
 
 # Очищений текст
